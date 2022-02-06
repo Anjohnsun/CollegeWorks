@@ -1,0 +1,1 @@
+{"freeVillagers":0,"guards":0,"villagersQueue":1,"guardsQueue":0,"wheat":15,"iron":0,"onField":0,"onMine":0,"onChurch":0}
