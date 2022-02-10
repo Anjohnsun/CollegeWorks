@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class Game_Controller : MonoBehaviour
 {
-    static public int
-      freeVillagers = 0,
-      guards = 0,
-      wheat = 20,
-      iron = 0;
-    //Узнать, почему не отображается в Unity
+    //private static Game_Controller _instance;
+
+    //public static Game_Controller Container() =>
+    //_instance ? new Game_Controller()
+
+    public Game_Controller(int freeVillagers, int guards, int wheat, int iron)
+    {
+        FreeVillagers = freeVillagers;
+        Guards = guards;
+        Wheat = wheat;
+        Iron = iron;
+    }
+    public int FreeVillagers, Guards, Wheat, Iron;
+
 }

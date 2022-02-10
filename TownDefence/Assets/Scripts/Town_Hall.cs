@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class Town_Hall : MonoBehaviour
 {
-    private string[] stats;
-    private const float TIME = 10;
+    private const float TIME = 3;
     [SerializeField] private float timeToCreate;
     [SerializeField] private bool inProgress = false;
     [SerializeField] private int REQUIRED_WHEAT = 5;
     [SerializeField] private int inQueue;
+    [SerializeField] private Bootstrap bootstrap;
+    private Game_Controller _game_Controller;
 
     void Start()
     {
         timeToCreate = TIME;
+        _game_Controller = bootstrap._game_Controller;
     }
 
     private void Update()
@@ -28,26 +30,27 @@ public class Town_Hall : MonoBehaviour
             else
             {
                 inQueue--;
-                Game_Controller.freeVillagers++;
+                _game_Controller.FreeVillagers++;
                 if (inQueue == 0)
                 {
                     inProgress = false;
                 }
                 timeToCreate = TIME;
+                bootstrap.UpdateData();
             }
         }
     }
 
     public void CreateVillager()
     {
-        if (Game_Controller.wheat >= REQUIRED_WHEAT)
+        if (_game_Controller.Wheat >= REQUIRED_WHEAT)
         {
             inQueue++;
+            _game_Controller.Wheat -= REQUIRED_WHEAT;
+            bootstrap.UpdateData();
+
             inProgress = true;
-            Game_Controller.wheat -= REQUIRED_WHEAT;
         }
     }
-
-
 
 }
